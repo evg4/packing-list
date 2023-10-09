@@ -1,3 +1,23 @@
+import { createSlice } from "@reduxjs/toolkit";
+
+const configObj = {
+  name: "view",
+  initialState: "SHOWALL",
+  reducers: {
+    hidePacked: () => {
+      return "HIDEPACKED";
+    },
+    showAll: () => {
+      return "SHOWALL";
+    },
+  },
+};
+
+const viewSlice = createSlice(configObj);
+export const { hidePacked, showAll } = viewSlice.actions;
+export default viewSlice.reducer;
+
+/*
 const initialView = "SHOWALL";
 
 export function hidePacked() {
@@ -21,3 +41,4 @@ export const viewReducer = (state = initialView, action) => {
     }
   }
 };
+*/

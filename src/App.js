@@ -17,7 +17,7 @@ function App({ state, dispatch }) {
       alert("You already have this item on your list.");
       document.getElementById("addNew").value = "";
     } else {
-      dispatch(addItem(item));
+      dispatch(addItem({ name: item, packed: false }));
       document.getElementById("addNew").value = "";
     }
   };
