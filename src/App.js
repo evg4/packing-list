@@ -22,9 +22,9 @@ function App({ state, dispatch }) {
     }
   };
 
-  const handleChange = (e) => {
+  /*const handleChange = (e) => {
     let item = e.target.value;
-  };
+  };*/
 
   const handleToggle = (e) => {
     let item = e.target.id;
@@ -49,7 +49,7 @@ function App({ state, dispatch }) {
       <h1>Packing list</h1>
       <ChangeView state={state} onClick={handleChangeView} />
       <List onRemove={handleRemove} onClick={handleToggle} state={state} />
-      <AddNew onSubmit={handleSubmit} onChange={handleChange} />
+      <AddNew onSubmit={handleSubmit} /*onChange={handleChange}*/ />
     </>
   );
 }

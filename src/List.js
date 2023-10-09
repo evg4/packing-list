@@ -1,4 +1,3 @@
-import { store } from "./store.js";
 import styles from "./List.module.css";
 
 function List({ state, onClick, onRemove }) {

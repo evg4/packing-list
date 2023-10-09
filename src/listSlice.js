@@ -8,7 +8,7 @@ const confObj = {
       state.push(action.payload);
     },
     togglePacked: (state, action) => {
-      state.map((item) => {
+      state.forEach((item) => {
         if (item.name === action.payload) {
           if (item.packed === false) {
             item.packed = true;
