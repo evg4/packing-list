@@ -1,14 +1,16 @@
 import "./App.css";
 import List from "./List";
 import AddNew from "./AddNew";
-import { addItem, togglePacked, removeItem } from "./store";
+import ChangeView from "./ChangeView";
+import { addItem, togglePacked, removeItem } from "./listSlice";
+import { hidePacked, showAll } from "./changeViewSlice";
 
 function App({ state, dispatch }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     let item = document.getElementById("addNew").value;
     if (
-      state.some((itemObj) => {
+      state.list.some((itemObj) => {
         return itemObj.name === item;
       })
     ) {
@@ -34,9 +36,18 @@ function App({ state, dispatch }) {
     dispatch(removeItem(item));
   };
 
+  const handleChangeView = (e) => {
+    if (state.view === "HIDEPACKED") {
+      dispatch(showAll());
+    } else if (state.view === "SHOWALL") {
+      dispatch(hidePacked());
+    }
+  };
+
   return (
     <>
       <h1>Packing list</h1>
+      <ChangeView state={state} onClick={handleChangeView} />
       <List onRemove={handleRemove} onClick={handleToggle} state={state} />
       <AddNew onSubmit={handleSubmit} onChange={handleChange} />
     </>
