@@ -1,7 +1,7 @@
 import "./App.css";
 import List from "./List";
 import AddNew from "./AddNew";
-import { addItem, togglePacked } from "./store";
+import { addItem, togglePacked, removeItem } from "./store";
 
 function App({ state, dispatch }) {
   const handleSubmit = (e) => {
@@ -29,10 +29,15 @@ function App({ state, dispatch }) {
     dispatch(togglePacked(item));
   };
 
+  const handleRemove = (e) => {
+    let item = e.target.id;
+    dispatch(removeItem(item));
+  };
+
   return (
     <>
       <h1>Packing list</h1>
-      <List onClick={handleToggle} state={state} />
+      <List onRemove={handleRemove} onClick={handleToggle} state={state} />
       <AddNew onSubmit={handleSubmit} onChange={handleChange} />
     </>
   );

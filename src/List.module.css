@@ -1,0 +1,15 @@
+.ul {
+  list-style: none;
+}
+
+.tick:hover {
+  cursor: pointer;
+}
+
+.x {
+  vertical-align: super;
+}
+
+.x:hover {
+  cursor: pointer;
+}

@@ -11,6 +11,10 @@ export function togglePacked(item) {
   };
 }
 
+export function removeItem(item) {
+  return { type: "items/removeItem", payload: item };
+}
+
 const initialState = [
   { name: "soap", packed: false },
   { name: "pants", packed: true },
@@ -31,9 +35,11 @@ const packReducer = (state = initialState, action) => {
         }
       });
       return state;
-      console.log(state);
-      //[...state, { name: action.payload, packed: false ? true : false }];
-      //code here
+    }
+    case "items/removeItem": {
+      return state.filter((item) => {
+        return item.name !== action.payload;
+      });
     }
     default: {
       return state;
