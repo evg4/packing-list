@@ -1,24 +1,40 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import List from "./List";
+import AddNew from "./AddNew";
+import { addItem, togglePacked } from "./store";
 
-function App() {
+function App({ state, dispatch }) {
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    let item = document.getElementById("addNew").value;
+    if (
+      state.some((itemObj) => {
+        return itemObj.name === item;
+      })
+    ) {
+      alert("You already have this item on your list.");
+      document.getElementById("addNew").value = "";
+    } else {
+      dispatch(addItem(item));
+      document.getElementById("addNew").value = "";
+    }
+  };
+
+  const handleChange = (e) => {
+    let item = e.target.value;
+  };
+
+  const handleToggle = (e) => {
+    let item = e.target.id;
+    dispatch(togglePacked(item));
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <h1>Packing list</h1>
+      <List onClick={handleToggle} state={state} />
+      <AddNew onSubmit={handleSubmit} onChange={handleChange} />
+    </>
   );
 }
 
